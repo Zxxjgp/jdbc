@@ -1,6 +1,7 @@
 package com.example.jdbc.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
+import java.sql.Connection;
 
 /**
  * @ProjectName: jdbc
@@ -80,4 +82,5 @@ public class DateConfig {
     public JdbcTemplate  jdbcTemplate(DataSource dataSource){
         return new JdbcTemplate(dataSource);
     }
+
 }
