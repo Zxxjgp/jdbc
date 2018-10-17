@@ -1,6 +1,8 @@
 package com.example.jdbc.controller;
 
+import com.example.jdbc.entity.Index;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ProjectName: jdbc
@@ -118,5 +122,37 @@ public class IndexController {
         return "1111111111111";
     }
 
+    /**
+     * 批量更新操作
+     */
+
+    @RequestMapping("updateList")
+    public String uop(){
+
+        List<Index> list = new ArrayList<>(3);
+        list.add(new Index(255,"255"));
+        list.add(new Index(256,"255"));
+        list.add(new Index(257,"255"));
+        list.add(new Index(258,"255"));
+        get(list);
+        return "1568674894";
+    }
+    public void get(List<Index> list){
+        final String sql = "insert into temp ( id, name) values (? , ?)";
+        jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
+                Index index = list.get(i);
+
+                preparedStatement.setString(1,index.getId().toString());
+                preparedStatement.setString(2,index.getName());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return list.size();
+            }
+        });
+    }
 
 }
