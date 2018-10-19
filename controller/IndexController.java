@@ -130,10 +130,10 @@ public class IndexController {
     public String uop(){
 
         List<Index> list = new ArrayList<>(3);
-        list.add(new Index(255,"255"));
-        list.add(new Index(256,"255"));
-        list.add(new Index(257,"255"));
-        list.add(new Index(258,"255"));
+        list.add(new Index(230,"255"));
+        list.add(new Index(231,"255"));
+        list.add(new Index(232,"255"));
+        list.add(new Index(233,"255"));
         get(list);
         return "1568674894";
     }

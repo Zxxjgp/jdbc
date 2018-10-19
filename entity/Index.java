@@ -1,5 +1,7 @@
 package com.example.jdbc.entity;
 
+import java.io.Serializable;
+
 /**
  * @ProjectName: jdbc
  * @Package: com.example.jdbc.entity
@@ -13,7 +15,7 @@ package com.example.jdbc.entity;
  * @Version: 1.0
  */
 
-public class Index {
+public class Index implements Serializable {
     private Integer id;
 
     private String name;
